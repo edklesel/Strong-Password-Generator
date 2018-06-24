@@ -1,5 +1,6 @@
 from random import randint as rand
 from pyperclip import copy
+import requests
 
 # Asks the user how many characters long they would like their password.
 length = input('How long would you like the password to be? - ')
@@ -13,39 +14,56 @@ possLetter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q
 possNumber = ['1','2','3','4','5','6','7','8','9','0']
 possSymbol = ['!','"','£','$','%','^','&','*','(',')','@','+','_','-','=']
 
-i = 0 				# Starting index of the password
-password = []		# Empty array, used to store the characters.
+# Starting index of the password
+i = 0
+
+# Empty array, used to store the characters.
+password = []
 
 # Algorithm to generate random characters.
 while i < int(length):
 
-    possRand = rand(1,4) 											# Variable used to determine the type of character.
+    # Variable used to determine the type of character.
+    possRand = rand(1,4)
 
-    if possRand in (1,2): 											# 50% chance of the character being a letter.
+    # 50% chance of the character being a letter.
+    if possRand in (1,2):
 
-        newDigit = possLetter[rand(0, possLetter.__len__()-1)]		# Defining the new character for this iteration.
+        # Defining the new character for this iteration.
+        newDigit = possLetter[rand(0, possLetter.__len__()-1)]
 
-        if rand(1,2) == 2: 											# 50% chance of the letter being upper-case.
+        # 50% chance of the letter being upper-case.
+        if rand(1,2) == 2:
 
-            newDigit = newDigit.upper()								# Changing the character to upper-case.
+            # Changing the character to upper-case.
+            newDigit = newDigit.upper()
 
-    elif possRand == 3:												# 25% chance of the character being a number.
+    # 25% chance of the character being a number.
+    elif possRand == 3:
 
-        newDigit = possNumber[rand(0, possNumber.__len__()-1)]		# Defining the new character for this iteration.
+        # Defining the new character for this iteration.
+        newDigit = possNumber[rand(0, possNumber.__len__()-1)]
 
-    elif possRand == 4:												# 25% chance of the character being a symbol.
+    # 25% chance of the character being a symbol.
+    elif possRand == 4:
 
-        newDigit = possSymbol[rand(0, possNumber.__len__()-1)]		# Defining the new character for this iteration.
+        # Defining the new character for this iteration.
+        newDigit = possSymbol[rand(0, possNumber.__len__()-1)]
 
-    password.append(newDigit)										# Adding the new character to the array.
+    # Adding the new character to the array.
+    password.append(newDigit)
 
-    i += 1															# Next letter.
+    # Next letter.
+    i += 1
 
-copy(''.join(password))												# Copy the password to the clipboard.
+# Copy the password to the clipboard.
+copy(''.join(password))
 
 print('')
-print(''.join(password))											# Outputs the pssword to the terminal window.
+# Outputs the pssword to the terminal window.
+print(''.join(password))
 print('')
 print('The password has been copied to your clipboard.')
 print('')
-input('Press Enter to Continue.')									# Close the window.
+# Close the window.
+input('Press Enter to Continue.')
