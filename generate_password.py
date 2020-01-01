@@ -1,6 +1,5 @@
 from random import randint as rand
 from pyperclip import copy
-import requests
 import argparse
 
 def generate_password(length: int = 15, clipboard: bool = False):
@@ -64,7 +63,7 @@ def generate_password(length: int = 15, clipboard: bool = False):
         i += 1
 
     if False in [checkLetter, checkLetterUpper, checkNumber, checkSymbol]:
-        generate_password(length=length, clipboard=clipboard)
+        password = generate_password(length=length, clipboard=clipboard)
         
     password = ''.join(password)
 
