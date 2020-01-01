@@ -40,7 +40,6 @@ class TestClipboard(unittest.TestCase):
     def test_copy(self):
         pyperclip.copy('blank')
         password = generate_password(clipboard=True)
-        raise PyperclipException
         self.assertEqual(password, pyperclip.paste())
 
     @catch_pyperclip_exception
