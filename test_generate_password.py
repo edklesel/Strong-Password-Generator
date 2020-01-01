@@ -1,12 +1,14 @@
 import unittest
 from generate_password import generate_password
 import pyperclip
+from pyperclip import PyperclipException
 
-def retain_clipboard(function):
+def catch_pyperclip_exception(function):
     def wrapper(self, *args, **kwargs):
-        clipboard = pyperclip.paste()
-        function()
-        pyperclip.copy(clipboard)
+        try:
+            function(self, *args, **kwargs)
+        except PyperclipException:
+            print('Caught PyperClip exception.')
     return wrapper
 
 class TestStrength(unittest.TestCase):
@@ -34,13 +36,14 @@ class TestStrength(unittest.TestCase):
 
 class TestClipboard(unittest.TestCase):
 
-    # @retain_clipboard
+    @catch_pyperclip_exception
     def test_copy(self):
         pyperclip.copy('blank')
         password = generate_password(clipboard=True)
+        raise PyperclipException
         self.assertEqual(password, pyperclip.paste())
 
-    # @retain_clipboard
+    @catch_pyperclip_exception
     def test_nocopy(self):
         pyperclip.copy('blank')
         password = generate_password(clipboard=False)
