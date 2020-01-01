@@ -25,7 +25,7 @@ class TestStrength(unittest.TestCase):
 
     def test_symbol(self):
         password = generate_password()
-        self.assertRegex(password, '[\!\"\£\$\%\^\&\*\(\)\-\_\=\+\[\]\{\}\@\~\#\,\.\<\>\/\?\|]')
+        self.assertRegex(password, r'[\!\"\£\$\%\^\&\*\(\)\-\_\=\+\[\]\{\}\@\~\#\,\.\<\>\/\?\|]')
 
     def test_upper(self):
         password = generate_password()
